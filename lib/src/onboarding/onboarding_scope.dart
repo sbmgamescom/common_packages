@@ -11,6 +11,7 @@ class OnboardingScope extends StatefulWidget {
     this.skipWidget,
     this.nextWidget,
     this.doneWidget,
+    this.show,
   });
 
   final Widget child;
@@ -18,6 +19,8 @@ class OnboardingScope extends StatefulWidget {
   final Widget? skipWidget;
   final Widget? nextWidget;
   final Widget? doneWidget;
+  final bool? show;
+
   @override
   State<OnboardingScope> createState() => _MyWidgetState();
 }
@@ -32,7 +35,7 @@ class _MyWidgetState extends State<OnboardingScope> {
       future: onboardingService.isFirstOpen,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          if (snapshot.data == true) {
+          if (snapshot.data == true && widget.show != true) {
             return widget.child;
           }
           return OnboardingList(
