@@ -8,11 +8,16 @@ class OnboardingScope extends StatefulWidget {
     super.key,
     required this.child,
     required this.pages,
+    this.skipWidget,
+    this.nextWidget,
+    this.doneWidget,
   });
 
   final Widget child;
   final List<Widget> pages;
-
+  final Widget? skipWidget;
+  final Widget? nextWidget;
+  final Widget? doneWidget;
   @override
   State<OnboardingScope> createState() => _MyWidgetState();
 }
@@ -31,6 +36,9 @@ class _MyWidgetState extends State<OnboardingScope> {
             return widget.child;
           }
           return OnboardingList(
+            skipWidget: widget.skipWidget,
+            doneWidget: widget.doneWidget,
+            nextWidget: widget.nextWidget,
             pages: _pages,
             doneOnPressed: () {
               Navigator.pushAndRemoveUntil(

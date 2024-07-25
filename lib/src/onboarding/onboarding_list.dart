@@ -8,10 +8,16 @@ class OnboardingList extends StatefulWidget {
     required this.pages,
     required this.doneOnPressed,
     required this.skipOnPressed,
+    this.skipWidget,
+    this.nextWidget,
+    this.doneWidget,
   });
   final List<Widget> pages;
   final VoidCallback doneOnPressed;
   final VoidCallback skipOnPressed;
+  final Widget? skipWidget;
+  final Widget? nextWidget;
+  final Widget? doneWidget;
 
   @override
   State<OnboardingList> createState() => _OnboardingListState();
@@ -58,7 +64,7 @@ class _OnboardingListState extends State<OnboardingList> {
                     onboardingService.setFirstOpen();
                     widget.skipOnPressed.call();
                   },
-                  child: const Text('SKIP'),
+                  child: widget.skipWidget ?? const Text('SKIP'),
                 ),
                 Row(
                   children: List.generate(
@@ -79,8 +85,9 @@ class _OnboardingListState extends State<OnboardingList> {
                       );
                     }
                   },
-                  child:
-                      Text(_currentPage == _pages.length - 1 ? 'DONE' : 'NEXT'),
+                  child: _currentPage == _pages.length - 1
+                      ? widget.doneWidget ?? const Text('DONE')
+                      : widget.nextWidget ?? const Text('NEXT'),
                 ),
               ],
             ),
