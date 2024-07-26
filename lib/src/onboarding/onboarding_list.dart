@@ -61,60 +61,84 @@ class _OnboardingListState extends State<OnboardingList> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.black12,
-                      textStyle: const TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    onPressed: () {
-                      _pageController.animateToPage(
-                        _pages.length - 1,
-                        duration: const Duration(milliseconds: 400),
-                        curve: Curves.easeInOut,
-                      );
-                      onboardingService.setFirstOpen();
-                      widget.skipOnPressed.call();
-                    },
-                    child: widget.skipWidget ?? const Text('SKIP'),
-                  ),
-                ),
+                // Expanded(
+                //   child: TextButton(
+                //     style: TextButton.styleFrom(
+                //       foregroundColor: Colors.black12,
+                //       textStyle: const TextStyle(
+                //         fontSize: 17,
+                //         fontWeight: FontWeight.bold,
+                //       ),
+                //     ),
+                //     onPressed: () {
+                //       _pageController.animateToPage(
+                //         _pages.length - 1,
+                //         duration: const Duration(milliseconds: 400),
+                //         curve: Curves.easeInOut,
+                //       );
+                //       onboardingService.setFirstOpen();
+                //       widget.skipOnPressed.call();
+                //     },
+                //     child: widget.skipWidget ?? const Text('SKIP'),
+                //   ),
+                // ),
                 Expanded(
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: List.generate(
                       _pages.length,
                       (index) => _buildDot(index, context),
                     ),
                   ),
                 ),
-                Expanded(
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.black,
-                      textStyle: const TextStyle(
-                        fontSize: 19,
-                        fontWeight: FontWeight.bold,
-                      ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.black,
+                    textStyle: const TextStyle(
+                      fontSize: 19,
+                      fontWeight: FontWeight.bold,
                     ),
-                    onPressed: () {
-                      if (_currentPage == _pages.length - 1) {
-                        onboardingService.setFirstOpen();
-                        widget.doneOnPressed.call();
-                      } else {
-                        _pageController.nextPage(
-                          duration: const Duration(milliseconds: 400),
-                          curve: Curves.easeInOut,
-                        );
-                      }
-                    },
-                    child: _currentPage == _pages.length - 1
-                        ? widget.doneWidget ?? const Text('DONE')
-                        : widget.nextWidget ?? const Text('NEXT'),
                   ),
+                  onPressed: () {
+                    if (_currentPage == _pages.length - 1) {
+                      onboardingService.setFirstOpen();
+                      widget.doneOnPressed.call();
+                    } else {
+                      _pageController.nextPage(
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.easeInOut,
+                      );
+                    }
+                  },
+                  child: _currentPage == _pages.length - 1
+                      ? widget.doneWidget ?? const Text('DONE')
+                      : widget.nextWidget ?? const Text('NEXT'),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 32.0),
+            child: Row(
+              children: [
+                TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.black12,
+                    textStyle: const TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  onPressed: () {
+                    _pageController.animateToPage(
+                      _pages.length - 1,
+                      duration: const Duration(milliseconds: 400),
+                      curve: Curves.easeInOut,
+                    );
+                    onboardingService.setFirstOpen();
+                    widget.skipOnPressed.call();
+                  },
+                  child: widget.skipWidget ?? const Text('SKIP'),
                 ),
               ],
             ),

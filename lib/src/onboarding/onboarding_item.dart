@@ -11,7 +11,7 @@ class OnboardingItem extends StatelessWidget {
       fontWeight: FontWeight.bold,
     ),
   });
-  final String image;
+  final Widget image;
   final String title;
   final String description;
   final TextStyle titleStyle;
@@ -29,10 +29,7 @@ class OnboardingItem extends StatelessWidget {
             child: SizedBox(
               width: MediaQuery.sizeOf(context).width,
               height: 300,
-              child: Image.asset(
-                image,
-                fit: BoxFit.cover,
-              ),
+              child: image,
             ),
           ),
           const SizedBox(height: 20),
