@@ -24,9 +24,16 @@ class OnboardingItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
-          Image.asset(
-            image,
-            fit: BoxFit.fill,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16.0),
+            child: SizedBox(
+              width: MediaQuery.sizeOf(context).width,
+              height: 300,
+              child: Image.asset(
+                image,
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
           const SizedBox(height: 20),
           Padding(
@@ -42,7 +49,7 @@ class OnboardingItem extends StatelessWidget {
                 Text(
                   description,
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 19,
                   ),
                 ),
               ],

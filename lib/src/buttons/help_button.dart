@@ -27,6 +27,9 @@ class ShowHelpButton extends StatelessWidget {
               content: content,
               actions: [
                 TextButton(
+                  style: TextButton.styleFrom(
+                      // foregroundColor: Colors.red,
+                      ),
                   child: close ?? const Text('Close'),
                   onPressed: () {
                     Navigator.of(context).pop();

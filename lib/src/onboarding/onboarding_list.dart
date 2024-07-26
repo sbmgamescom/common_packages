@@ -1,3 +1,4 @@
+import 'package:common_packages/src/onboarding/onboarding_item.dart';
 import 'package:flutter/material.dart';
 
 import 'onboarding_service.dart';
@@ -12,7 +13,7 @@ class OnboardingList extends StatefulWidget {
     this.nextWidget,
     this.doneWidget,
   });
-  final List<Widget> pages;
+  final List<OnboardingItem> pages;
   final VoidCallback doneOnPressed;
   final VoidCallback skipOnPressed;
   final Widget? skipWidget;
@@ -28,7 +29,7 @@ class _OnboardingListState extends State<OnboardingList> {
   final OnboardingService onboardingService = OnboardingService();
   int _currentPage = 0;
 
-  late final List<Widget> _pages = widget.pages;
+  late final List<OnboardingItem> _pages = widget.pages;
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +76,6 @@ class _OnboardingListState extends State<OnboardingList> {
                 TextButton(
                   onPressed: () {
                     if (_currentPage == _pages.length - 1) {
-                      // Navigate to home screen
                       onboardingService.setFirstOpen();
                       widget.doneOnPressed.call();
                     } else {

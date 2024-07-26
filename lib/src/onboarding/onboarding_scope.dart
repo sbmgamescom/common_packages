@@ -1,7 +1,5 @@
-import 'package:common_packages/src/onboarding/onboarding_list.dart';
+import 'package:common_packages/exports.dart';
 import 'package:flutter/material.dart';
-
-import 'onboarding_service.dart';
 
 class OnboardingScope extends StatefulWidget {
   const OnboardingScope({
@@ -15,7 +13,7 @@ class OnboardingScope extends StatefulWidget {
   });
 
   final Widget child;
-  final List<Widget> pages;
+  final List<OnboardingItem> pages;
   final Widget? skipWidget;
   final Widget? nextWidget;
   final Widget? doneWidget;
@@ -27,7 +25,7 @@ class OnboardingScope extends StatefulWidget {
 
 class _MyWidgetState extends State<OnboardingScope> {
   final OnboardingService onboardingService = OnboardingService();
-  late final List<Widget> _pages = widget.pages;
+  late final List<OnboardingItem> _pages = widget.pages;
 
   @override
   Widget build(BuildContext context) {
