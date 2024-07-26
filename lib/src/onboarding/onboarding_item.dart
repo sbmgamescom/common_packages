@@ -21,7 +21,7 @@ class OnboardingItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
           ClipRRect(

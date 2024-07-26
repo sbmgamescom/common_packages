@@ -19,6 +19,7 @@ class OnboardingList extends StatefulWidget {
   final Widget? skipWidget;
   final Widget? nextWidget;
   final Widget? doneWidget;
+  // final double? itemHeight;
 
   @override
   State<OnboardingList> createState() => _OnboardingListState();
@@ -45,6 +46,11 @@ class _OnboardingListState extends State<OnboardingList> {
               });
             },
             itemBuilder: (context, index) {
+              // final page = OnboardingItem(
+              //   image: _pages[index].image,
+              //   title: _pages[index].title,
+              //   description: _pages[index].description,
+              // );
               return _pages[index];
             },
           ),
@@ -53,41 +59,62 @@ class _OnboardingListState extends State<OnboardingList> {
             left: 20,
             right: 20,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(
-                  onPressed: () {
-                    _pageController.animateToPage(
-                      _pages.length - 1,
-                      duration: const Duration(milliseconds: 400),
-                      curve: Curves.easeInOut,
-                    );
-                    onboardingService.setFirstOpen();
-                    widget.skipOnPressed.call();
-                  },
-                  child: widget.skipWidget ?? const Text('SKIP'),
-                ),
-                Row(
-                  children: List.generate(
-                    _pages.length,
-                    (index) => _buildDot(index, context),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    if (_currentPage == _pages.length - 1) {
-                      onboardingService.setFirstOpen();
-                      widget.doneOnPressed.call();
-                    } else {
-                      _pageController.nextPage(
+                Expanded(
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.black12,
+                      textStyle: const TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onPressed: () {
+                      _pageController.animateToPage(
+                        _pages.length - 1,
                         duration: const Duration(milliseconds: 400),
                         curve: Curves.easeInOut,
                       );
-                    }
-                  },
-                  child: _currentPage == _pages.length - 1
-                      ? widget.doneWidget ?? const Text('DONE')
-                      : widget.nextWidget ?? const Text('NEXT'),
+                      onboardingService.setFirstOpen();
+                      widget.skipOnPressed.call();
+                    },
+                    child: widget.skipWidget ?? const Text('SKIP'),
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(
+                      _pages.length,
+                      (index) => _buildDot(index, context),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      textStyle: const TextStyle(
+                        fontSize: 19,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onPressed: () {
+                      if (_currentPage == _pages.length - 1) {
+                        onboardingService.setFirstOpen();
+                        widget.doneOnPressed.call();
+                      } else {
+                        _pageController.nextPage(
+                          duration: const Duration(milliseconds: 400),
+                          curve: Curves.easeInOut,
+                        );
+                      }
+                    },
+                    child: _currentPage == _pages.length - 1
+                        ? widget.doneWidget ?? const Text('DONE')
+                        : widget.nextWidget ?? const Text('NEXT'),
+                  ),
                 ),
               ],
             ),
@@ -100,10 +127,10 @@ class _OnboardingListState extends State<OnboardingList> {
   Widget _buildDot(int index, BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 4),
-      width: 8,
-      height: 8,
+      width: 12,
+      height: 12,
       decoration: BoxDecoration(
-        color: _currentPage == index ? Colors.blue : Colors.grey,
+        color: _currentPage == index ? Colors.black : Colors.black12,
         shape: BoxShape.circle,
       ),
     );
