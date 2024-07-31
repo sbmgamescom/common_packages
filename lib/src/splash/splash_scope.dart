@@ -1,3 +1,4 @@
+import 'package:common_packages/src/splash/error_page.dart';
 import 'package:flutter/material.dart';
 
 class SplashScope extends StatefulWidget {
@@ -5,55 +6,51 @@ class SplashScope extends StatefulWidget {
     super.key,
     required this.init,
     required this.goPage,
-    required this.errorPage,
+    this.showAppBar = false,
   });
 
   final Future<void> init;
   final Widget goPage;
-  final Widget Function(Object error) errorPage;
+
+  final bool showAppBar;
 
   @override
   State<SplashScope> createState() => _SplashScopeState();
 }
 
 class _SplashScopeState extends State<SplashScope> {
+  late Widget _currentPage;
+
   @override
   void initState() {
     super.initState();
-    widget.init.then(
-      (value) {
-        _goToPage(widget.goPage);
-      },
-    ).catchError(
-      (error) {
-        _goToError(widget.errorPage(error));
-      },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(),
+    _currentPage = Scaffold(
+      appBar: widget.showAppBar ? AppBar() : null,
       body: const Center(
         child: CircularProgressIndicator(
           strokeWidth: 8,
         ),
       ),
     );
-  }
-
-  void _goToPage(Widget page) {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => page),
+    widget.init.then(
+      (value) {
+        setState(() {
+          _currentPage = widget.goPage;
+        });
+      },
+    ).catchError(
+      (error) {
+        setState(() {
+          _currentPage = ErrorPage(
+            error: error,
+          );
+        });
+      },
     );
   }
 
-  void _goToError(Widget errorPage) {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => errorPage),
-    );
+  @override
+  Widget build(BuildContext context) {
+    return _currentPage;
   }
 }
