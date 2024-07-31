@@ -59,8 +59,8 @@ class _AppSnackbar {
         margin: const EdgeInsets.all(16.0),
         clipBehavior: Clip.antiAlias,
         icon: SvgPicture.asset(
-          "assets/icons/info_outline.svg",
-          package: 'beyim_ui',
+          "assets/icons/info.svg",
+          package: 'common_packages',
           height: 24,
           width: 24,
           colorFilter:
@@ -74,7 +74,10 @@ class _AppSnackbar {
           onPressed: () {
             controller.dismiss();
           },
-          icon: const Icon(Icons.close),
+          icon: const Icon(
+            Icons.close,
+            color: Colors.white,
+          ),
         ),
         backgroundColor: snackbarConfig.backgroundColor,
       ),
@@ -86,23 +89,27 @@ class _AppSnackbar {
     switch (type) {
       case _SnackbarType.error:
         return _SnackbarConfig(
-          backgroundColor: Colors.red.shade700,
-          contentColor: Colors.red.shade200,
+          backgroundColor: Colors.red.shade300,
+          // contentColor: Colors.red.shade200,
+          contentColor: Colors.white,
         );
       case _SnackbarType.success:
         return _SnackbarConfig(
-          backgroundColor: Colors.green.shade700,
-          contentColor: Colors.green.shade200,
+          backgroundColor: Colors.green.shade300,
+          // contentColor: Colors.green.shade200,
+          contentColor: Colors.white,
         );
       case _SnackbarType.common:
         return _SnackbarConfig(
-          backgroundColor: Colors.orange.shade700,
-          contentColor: Colors.orange.shade200,
+          backgroundColor: Colors.orange.shade300,
+          // contentColor: Colors.orange.shade200,
+          contentColor: Colors.white,
         );
       default:
         return _SnackbarConfig(
-          backgroundColor: Colors.orange.shade700,
-          contentColor: Colors.orange.shade200,
+          backgroundColor: Colors.orange.shade300,
+          // contentColor: Colors.orange.shade200,
+          contentColor: Colors.white,
         );
     }
   }
