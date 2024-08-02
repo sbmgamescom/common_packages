@@ -8,6 +8,7 @@ class GridItem extends StatelessWidget {
     required this.image,
     this.title,
     this.subtitle,
+    this.imageSize = 84,
   });
   final borderRadius = BorderRadius.circular(24);
   final VoidCallback? onPressed;
@@ -15,6 +16,7 @@ class GridItem extends StatelessWidget {
   final String image;
   final String? title;
   final String? subtitle;
+  final double imageSize;
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +36,17 @@ class GridItem extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SizedBox(
+                    height: imageSize,
+                    width: imageSize,
+                    child: Image.asset(
+                      image,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
                   const SizedBox(height: 4),
-                  Image.asset(image),
                   Text(
                     title ?? '',
                     style: const TextStyle(
