@@ -3,5 +3,6 @@ export 'src/buttons/exports.dart';
 export 'src/cards/exports.dart';
 export 'src/onboarding/exports.dart';
 export 'src/padding/exports.dart';
+export 'src/rate_app/exports.dart';
 export 'src/splash/exports.dart';
 export 'src/utils/exports.dart';
