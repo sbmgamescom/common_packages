@@ -87,7 +87,11 @@ class _AlertDialog extends StatelessWidget {
                   ),
                   child: const Text(
                     'Нет',
-                    style: TextStyle(fontSize: 19, color: Colors.white),
+                    style: TextStyle(
+                      fontSize: 19,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -105,7 +109,11 @@ class _AlertDialog extends StatelessWidget {
                   ),
                   child: const Text(
                     'Да',
-                    style: TextStyle(fontSize: 19, color: Colors.white),
+                    style: TextStyle(
+                      fontSize: 19,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
