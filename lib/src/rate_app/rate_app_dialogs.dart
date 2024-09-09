@@ -6,7 +6,22 @@ extension ReviewX on BuildContext {
   void showReviewDialog() async {
     final prefs = await SharedPreferences.getInstance();
     final hasReviewed = prefs.getBool('hasReviewed') ?? false;
-
+    if (hasReviewed) {
+      return showDialog(
+          context: this,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Отзыв оставлен'),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text('OK'))
+              ],
+            );
+          });
+    }
     showDialog(
       context: this,
       builder: (BuildContext context) {
