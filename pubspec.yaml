@@ -10,11 +10,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.19.0
+  intl_translation: ^0.20.0
   flash: ^3.1.1
   flutter_svg: ^2.0.10+1
   restart_app: ^1.2.1
   shared_preferences: ^2.2.3
   in_app_review: ^2.0.9
+  
 
 dev_dependencies:
   flutter_test:
@@ -22,6 +27,7 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
 flutter:
-   assets:
+  assets:
     - assets/icons/
     - assets/images/
+

@@ -1,0 +1,8 @@
+{
+    "@@locale": "en",
+    "reviewDialogTitle": "Did you like the app?",
+    "reviewDialogText": "Would you like to leave a review?",
+    "reviewLeftTitle": "Review left",
+    "buttonYes": "Yes",
+    "buttonNo": "No"
+}

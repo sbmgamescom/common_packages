@@ -1,0 +1,28 @@
+{
+  "@@last_modified": "2024-09-10T15:37:48.576510",
+  "reviewDialogTitle": "Did you like the app?",
+  "@reviewDialogTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reviewDialogText": "Would you like to leave a review?",
+  "@reviewDialogText": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reviewLeftTitle": "Review left",
+  "@reviewLeftTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "buttonYes": "Yes",
+  "@buttonYes": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "buttonNo": "No",
+  "@buttonNo": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

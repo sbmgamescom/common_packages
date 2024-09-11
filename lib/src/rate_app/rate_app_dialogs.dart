@@ -1,9 +1,12 @@
+import 'package:common_packages/src/rate_app/rate_app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 extension ReviewX on BuildContext {
   void showReviewDialog() async {
+    final localizations = MyLocalizations.of(this); // Локализованные строки
+
     final prefs = await SharedPreferences.getInstance();
     final hasReviewed = prefs.getBool('hasReviewed') ?? false;
     if (hasReviewed) {
@@ -11,7 +14,7 @@ extension ReviewX on BuildContext {
           context: this,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: const Text('Отзыв оставлен'),
+              title: Text(localizations.reviewLeftTitle),
               actions: [
                 TextButton(
                     onPressed: () {
@@ -27,7 +30,7 @@ extension ReviewX on BuildContext {
       builder: (BuildContext context) {
         return _AlertDialog(
           imageUrl: 'assets/images/like.png',
-          title: 'Вам понравилось приложение?',
+          title: localizations.reviewDialogTitle,
           successOnPressed: () {
             _showSecondDialog();
           },
@@ -37,12 +40,14 @@ extension ReviewX on BuildContext {
   }
 
   void _showSecondDialog() {
+    final localizations = MyLocalizations.of(this);
+
     showDialog(
       context: this,
       builder: (BuildContext context) {
         return _AlertDialog(
           imageUrl: 'assets/images/heart.png',
-          title: 'Не хотите оставить отзыв?',
+          title: localizations.reviewDialogText,
           successOnPressed: () async {
             // Сохраняем состояние, что отзыв был оставлен
             final prefs = await SharedPreferences.getInstance();
@@ -79,6 +84,8 @@ class _AlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = MyLocalizations.of(context);
+
     return AlertDialog(
       icon: SizedBox(
         height: 100,
@@ -107,9 +114,9 @@ class _AlertDialog extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red.shade200,
                   ),
-                  child: const Text(
-                    'Нет',
-                    style: TextStyle(
+                  child: Text(
+                    localizations.buttonNo,
+                    style: const TextStyle(
                       fontSize: 19,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -129,9 +136,9 @@ class _AlertDialog extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green.shade200,
                   ),
-                  child: const Text(
-                    'Да',
-                    style: TextStyle(
+                  child: Text(
+                    localizations.buttonYes,
+                    style: const TextStyle(
                       fontSize: 19,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,

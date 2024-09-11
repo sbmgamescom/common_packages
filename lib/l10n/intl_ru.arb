@@ -1,0 +1,8 @@
+{
+    "@@locale": "ru",
+    "reviewDialogTitle": "Вам понравилось приложение?",
+    "reviewDialogText": "Не хотите оставить отзыв?",
+    "reviewLeftTitle": "Отзыв оставлен",
+    "buttonYes": "Да",
+    "buttonNo": "Нет"
+}
