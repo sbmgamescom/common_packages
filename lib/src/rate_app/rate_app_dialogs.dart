@@ -4,27 +4,30 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 extension ReviewX on BuildContext {
-  void showReviewDialog() async {
+  void showReviewDialog({Function()? onHasReviewed}) async {
     final localizations = MyLocalizations.of(this); // Локализованные строки
 
     final prefs = await SharedPreferences.getInstance();
     final hasReviewed = prefs.getBool('hasReviewed') ?? false;
     if (hasReviewed) {
-      return showDialog(
-          context: this,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text(localizations.reviewLeftTitle),
-              actions: [
-                TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text('OK'))
-              ],
-            );
-          });
+      onHasReviewed?.call();
+      return;
+      // return showDialog(
+      //     context: this,
+      //     builder: (BuildContext context) {
+      //       return AlertDialog(
+      //         title: Text(localizations.reviewLeftTitle),
+      //         actions: [
+      //           TextButton(
+      //               onPressed: () {
+      //                 Navigator.pop(context);
+      //               },
+      //               child: const Text('OK'))
+      //         ],
+      //       );
+      //     });
     }
+    await prefs.setBool('hasReviewed', true);
     showDialog(
       context: this,
       builder: (BuildContext context) {
@@ -50,8 +53,8 @@ extension ReviewX on BuildContext {
           title: localizations.reviewDialogText,
           successOnPressed: () async {
             // Сохраняем состояние, что отзыв был оставлен
-            final prefs = await SharedPreferences.getInstance();
-            await prefs.setBool('hasReviewed', true);
+            // final prefs = await SharedPreferences.getInstance();
+            // await prefs.setBool('hasReviewed', true);
             requestReview();
           },
         );
