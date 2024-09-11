@@ -12,20 +12,6 @@ extension ReviewX on BuildContext {
     if (hasReviewed) {
       onHasReviewed?.call();
       return;
-      // return showDialog(
-      //     context: this,
-      //     builder: (BuildContext context) {
-      //       return AlertDialog(
-      //         title: Text(localizations.reviewLeftTitle),
-      //         actions: [
-      //           TextButton(
-      //               onPressed: () {
-      //                 Navigator.pop(context);
-      //               },
-      //               child: const Text('OK'))
-      //         ],
-      //       );
-      //     });
     }
     await prefs.setBool('hasReviewed', true);
     showDialog(
@@ -52,9 +38,6 @@ extension ReviewX on BuildContext {
           imageUrl: 'assets/images/heart.png',
           title: localizations.reviewDialogText,
           successOnPressed: () async {
-            // Сохраняем состояние, что отзыв был оставлен
-            // final prefs = await SharedPreferences.getInstance();
-            // await prefs.setBool('hasReviewed', true);
             requestReview();
           },
         );
@@ -70,7 +53,6 @@ extension ReviewX on BuildContext {
     } else {
       inAppReview.openStoreListing();
     }
-    print('review');
   }
 }
 
