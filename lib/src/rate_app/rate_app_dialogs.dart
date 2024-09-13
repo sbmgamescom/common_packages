@@ -1,10 +1,15 @@
+import 'dart:developer';
+
 import 'package:common_packages/src/rate_app/rate_app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 extension ReviewX on BuildContext {
-  void showReviewDialog({Function()? onHasReviewed}) async {
+  void showReviewDialog({
+    Function()? onHasReviewed,
+    int showAfterAttempts = 0,
+  }) async {
     final localizations = MyLocalizations.of(this); // Локализованные строки
 
     final prefs = await SharedPreferences.getInstance();
@@ -13,7 +18,22 @@ extension ReviewX on BuildContext {
       onHasReviewed?.call();
       return;
     }
+    int attemptCount = prefs.getInt('attemptCount') ?? 0;
+    attemptCount++;
+    await prefs.setInt('attemptCount', attemptCount);
+
+    // Проверяем, достиг ли счетчик заданного количества попыток
+    if (attemptCount < showAfterAttempts) {
+      // Если нет, просто возвращаемся
+      log('Если нет, просто возвращаемся');
+      return;
+    } else {
+      await prefs.setInt('attemptCount', 0);
+    }
+
+    // Помечаем, что диалог был показан
     await prefs.setBool('hasReviewed', true);
+
     showDialog(
       context: this,
       builder: (BuildContext context) {
