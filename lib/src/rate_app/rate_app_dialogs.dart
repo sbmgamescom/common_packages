@@ -9,12 +9,13 @@ extension ReviewX on BuildContext {
   void showReviewDialog({
     Function()? onHasReviewed,
     int showAfterAttempts = 0,
+    bool isDebug = false,
   }) async {
     final localizations = MyLocalizations.of(this); // Локализованные строки
 
     final prefs = await SharedPreferences.getInstance();
     final hasReviewed = prefs.getBool('hasReviewed') ?? false;
-    if (hasReviewed) {
+    if (hasReviewed && !isDebug) {
       onHasReviewed?.call();
       return;
     }
