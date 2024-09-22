@@ -19,6 +19,7 @@ dependencies:
   restart_app: ^1.2.1
   shared_preferences: ^2.2.3
   in_app_review: ^2.0.9
+  url_launcher: ^6.3.0
   
 
 dev_dependencies:

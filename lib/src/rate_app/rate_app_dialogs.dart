@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+const _hasReviewedKey = 'hasReviewed';
+const _attemptCountKey = 'attemptCount';
+
 extension ReviewX on BuildContext {
   void showReviewDialog({
     Function()? onHasReviewed,
@@ -15,14 +18,14 @@ extension ReviewX on BuildContext {
     final localizations = MyLocalizations.of(this); // Локализованные строки
 
     final prefs = await SharedPreferences.getInstance();
-    final hasReviewed = prefs.getBool('hasReviewed') ?? false;
+    final hasReviewed = prefs.getBool(_hasReviewedKey) ?? false;
     if (hasReviewed && !isDebug) {
       onHasReviewed?.call();
       return;
     }
-    int attemptCount = prefs.getInt('attemptCount') ?? 0;
+    int attemptCount = prefs.getInt(_attemptCountKey) ?? 0;
     attemptCount++;
-    await prefs.setInt('attemptCount', attemptCount);
+    await prefs.setInt(_attemptCountKey, attemptCount);
 
     // Проверяем, достиг ли счетчик заданного количества попыток
     if (attemptCount < showAfterAttempts) {
@@ -30,11 +33,11 @@ extension ReviewX on BuildContext {
       log('Если нет, просто возвращаемся');
       return;
     } else {
-      await prefs.setInt('attemptCount', 0);
+      await prefs.setInt(_attemptCountKey, 0);
     }
 
     // Помечаем, что диалог был показан
-    await prefs.setBool('hasReviewed', true);
+    await prefs.setBool(_hasReviewedKey, true);
 
     showDialog(
       context: this,
