@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:common_packages/src/dialogs/actions_alert_dialogs.dart';
 import 'package:common_packages/src/rate_app/rate_app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
@@ -92,74 +93,22 @@ class _AlertDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final localizations = MyLocalizations.of(context);
 
-    return AlertDialog(
-      icon: SizedBox(
-        height: 100,
-        child: imageUrl != null
-            ? Image.asset(
-                imageUrl!,
-                package: 'common_packages',
-              )
-            : null,
+    return ActionsAlertDialog(
+      imageUrl: imageUrl,
+      title: title,
+      noButton: (
+        title: localizations.buttonNo,
+        onPressed: () {
+          Navigator.pop(context);
+        }
       ),
-      title: Text(
-        title,
-        textAlign: TextAlign.center,
+      yesButton: (
+        title: localizations.buttonYes,
+        onPressed: () {
+          Navigator.of(context).pop();
+          successOnPressed?.call();
+        }
       ),
-      // titleTextStyle: const TextStyle(
-      //     fontWeight: FontWeight.bold, color: Colors.black87),
-      actionsAlignment: MainAxisAlignment.center,
-      contentPadding: const EdgeInsets.all(20), // Добавляем отступы
-      actions: [
-        Row(
-          children: [
-            Expanded(
-              child: SizedBox(
-                height: 50, // Устанавливаем фиксированную высоту кнопок
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red.shade200,
-                  ),
-                  child: Text(
-                    localizations.buttonNo,
-                    style: const TextStyle(
-                      fontSize: 19,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ),
-            ),
-            const SizedBox(width: 10), // Промежуток между кнопками
-            Expanded(
-              child: SizedBox(
-                height: 50, // Устанавливаем фиксированную высоту кнопок
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green.shade200,
-                  ),
-                  child: Text(
-                    localizations.buttonYes,
-                    style: const TextStyle(
-                      fontSize: 19,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    successOnPressed?.call();
-                  },
-                ),
-              ),
-            ),
-          ],
-        ),
-      ],
     );
   }
 }
