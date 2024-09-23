@@ -47,8 +47,9 @@ extension OurAppsX on BuildContext {
           title: localizations.reviewDialogTitle,
           successOnPressed: () {
             openStringUrl(
-                url:
-                    'https://play.google.com/store/apps/dev?id=9203862170370327275');
+              url:
+                  'https://play.google.com/store/apps/dev?id=9203862170370327275',
+            );
           },
         );
       },
