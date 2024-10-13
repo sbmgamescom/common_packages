@@ -30,8 +30,7 @@ class ActionsAlertDialog extends StatelessWidget {
         title,
         textAlign: TextAlign.center,
       ),
-      // titleTextStyle: const TextStyle(
-      //     fontWeight: FontWeight.bold, color: Colors.black87),
+
       actionsAlignment: MainAxisAlignment.center,
       contentPadding: const EdgeInsets.all(20), // Добавляем отступы
       actions: [

@@ -1,2 +1,2 @@
 export 'rate_app_dialogs.dart';
-export 'rate_app_localization_delegate.dart';
+export 'rate_app_bottom_sheet.dart';

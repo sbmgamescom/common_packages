@@ -13,7 +13,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.19.0
-  intl_translation: ^0.20.0
+  # intl_translation: ^0.20.0
   flash: ^3.1.1
   flutter_svg: ^2.0.10+1
   restart_app: ^1.2.1
@@ -26,9 +26,11 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  flutter_gen: ^5.8.0
 
 flutter:
   assets:
     - assets/icons/
     - assets/images/
-
+  
+  generate: true 

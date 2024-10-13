@@ -1,7 +1,7 @@
 import 'dart:developer';
 
+import 'package:common_packages/l10n/app_localizations.dart';
 import 'package:common_packages/src/dialogs/actions_alert_dialogs.dart';
-import 'package:common_packages/src/rate_app/rate_app_localization.dart';
 import 'package:common_packages/src/utils/open_url.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,7 +15,7 @@ extension OurAppsX on BuildContext {
     int showAfterAttempts = 0,
     bool isDebug = false,
   }) async {
-    final localizations = MyLocalizations.of(this); // Локализованные строки
+    final localizations = AppLocalizations.of(this)!; // Локализованные строки
 
     final prefs = await SharedPreferences.getInstance();
     final hasReviewed = prefs.getBool(_ourAppsKey) ?? false;
@@ -44,7 +44,7 @@ extension OurAppsX on BuildContext {
       builder: (BuildContext context) {
         return _AlertDialog(
           imageUrl: 'assets/images/like.png',
-          title: localizations.reviewDialogTitle,
+          title: 'Хотите ознакомиться с нашими другими приложениями?',
           successOnPressed: () {
             openStringUrl(
               url:
@@ -70,7 +70,7 @@ class _AlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final localizations = MyLocalizations.of(context);
+    final localizations = AppLocalizations.of(context)!;
 
     return ActionsAlertDialog(
       imageUrl: imageUrl,

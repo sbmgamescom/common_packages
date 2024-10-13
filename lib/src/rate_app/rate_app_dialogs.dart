@@ -1,10 +1,11 @@
 import 'dart:developer';
 
 import 'package:common_packages/src/dialogs/actions_alert_dialogs.dart';
-import 'package:common_packages/src/rate_app/rate_app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../l10n/app_localizations.dart';
 
 const _hasReviewedKey = 'hasReviewed';
 const _attemptCountKey = 'attemptCount';
@@ -15,7 +16,7 @@ extension ReviewX on BuildContext {
     int showAfterAttempts = 0,
     bool isDebug = false,
   }) async {
-    final localizations = MyLocalizations.of(this); // Локализованные строки
+    final localizations = AppLocalizations.of(this)!; // Локализованные строки
 
     final prefs = await SharedPreferences.getInstance();
     final hasReviewed = prefs.getBool(_hasReviewedKey) ?? false;
@@ -54,7 +55,7 @@ extension ReviewX on BuildContext {
   }
 
   void _showSecondDialog() {
-    final localizations = MyLocalizations.of(this);
+    final localizations = AppLocalizations.of(this)!;
 
     showDialog(
       context: this,
@@ -94,7 +95,7 @@ class _AlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final localizations = MyLocalizations.of(context);
+    final localizations = AppLocalizations.of(context)!;
 
     return ActionsAlertDialog(
       imageUrl: imageUrl,
