@@ -27,7 +27,7 @@ extension OurAppsExtension on BuildContext {
 
     // Проверяем, достиг ли счетчик заданного количества попыток
     if (attemptCount < showAfterAttempts) {
-      log('Попыток пока недостаточно для показа BottomSheet');
+      log('Недостаточно попыток для показа. Показываем позже.');
       return;
     } else {
       await prefs.setInt(_ourAppsAttemptCountKey, 0);
@@ -36,7 +36,7 @@ extension OurAppsExtension on BuildContext {
     // Помечаем, что BottomSheet был показан
     await prefs.setBool(_ourAppsKey, true);
 
-    // Показать BottomSheet вместо диалога
+    // Показать BottomSheet
     showModalBottomSheet(
       context: this,
       shape: const RoundedRectangleBorder(
@@ -45,10 +45,11 @@ extension OurAppsExtension on BuildContext {
       backgroundColor: Colors.white,
       isScrollControlled: true,
       isDismissible: false,
+      enableDrag: false,
       builder: (BuildContext context) {
         return _OurAppsBottomSheet(
-          imageUrl: 'assets/images/like.png',
-          title: 'Хотите ознакомиться с нашими другими приложениями?',
+          imageUrl: 'assets/images/discord.png',
+          title: localizations.ourAppsTitle,
           successOnPressed: () {
             openStringUrl(
               url:
@@ -76,12 +77,12 @@ class _OurAppsBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
 
-    const bottomTextStyle = const TextStyle(
+    const bottomTextStyle = TextStyle(
       fontSize: 19,
-      color: Colors.black,
-      // fontWeight: FontWeight.bold,
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
     );
-    const textStyle = const TextStyle(
+    const textStyle = TextStyle(
       fontSize: 20,
       fontWeight: FontWeight.bold,
       color: Colors.black87,
@@ -129,7 +130,7 @@ class _OurAppsBottomSheet extends StatelessWidget {
                       Navigator.pop(context);
                     },
                     child: Text(
-                      localizations.buttonNo,
+                      localizations.ourNoButton,
                       style: bottomTextStyle,
                     ),
                   ),
@@ -148,7 +149,7 @@ class _OurAppsBottomSheet extends StatelessWidget {
                       successOnPressed?.call();
                     },
                     child: Text(
-                      localizations.buttonYes,
+                      localizations.ourYesButton,
                       style: bottomTextStyle,
                     ),
                   ),

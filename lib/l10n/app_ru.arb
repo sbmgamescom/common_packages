@@ -3,6 +3,11 @@
     "reviewDialogTitle": "Вам понравилось приложение?",
     "reviewDialogText": "Не хотите оставить отзыв?",
     "reviewLeftTitle": "Отзыв оставлен",
-    "buttonYes": "Да",
-    "buttonNo": "Нет"
+    "buttonYes": "Оценить",
+    "buttonNo": "Нет, спасибо",
+    "reviewDialogSubtitle": "Мы всегда рады обратной связи! Если вам нравится наше приложение, оцените его в магазине. Нам это очень важно!",
+    "ourAppsTitle":"Попробуйте другие наши приложения!",
+    "ourNoButton":"Нет",
+    "ourYesButton":"Да, давайте!"
+
 }

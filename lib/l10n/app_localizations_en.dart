@@ -16,8 +16,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reviewLeftTitle => 'Review left';
 
   @override
-  String get buttonYes => 'Yes';
+  String get buttonYes => 'Rate now';
 
   @override
-  String get buttonNo => 'No';
+  String get buttonNo => 'No, thanks';
+
+  @override
+  String get reviewDialogSubtitle => 'We always appreciate your feedback! If you enjoy our app, please rate it in the app store. Your opinion means a lot to us!';
+
+  @override
+  String get ourAppsTitle => 'Try our other apps!';
+
+  @override
+  String get ourNoButton => 'No';
+
+  @override
+  String get ourYesButton => 'Yes, let\'s go!';
 }

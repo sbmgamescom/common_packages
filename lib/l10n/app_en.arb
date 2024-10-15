@@ -3,6 +3,12 @@
     "reviewDialogTitle": "Did you like the app?",
     "reviewDialogText": "Would you like to leave a review?",
     "reviewLeftTitle": "Review left",
-    "buttonYes": "Yes",
-    "buttonNo": "No"
+    "buttonYes": "Rate now",
+    "buttonNo": "No, thanks",
+    "reviewDialogSubtitle": "We always appreciate your feedback! If you enjoy our app, please rate it in the app store. Your opinion means a lot to us!",
+    "ourAppsTitle": "Try our other apps!",
+    "ourNoButton": "No",
+    "ourYesButton": "Yes, let's go!"
+
+
 }

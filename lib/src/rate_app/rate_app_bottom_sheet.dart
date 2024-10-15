@@ -46,40 +46,43 @@ extension ReviewExtension on BuildContext {
       backgroundColor: Colors.white,
       isScrollControlled: true,
       isDismissible: false,
+      enableDrag: false,
       builder: (BuildContext context) {
         return _ReviewBottomSheet(
           imageUrl: 'assets/images/like.png',
           title: localizations.reviewDialogTitle,
+          subtitle: localizations.reviewDialogSubtitle,
           successOnPressed: () {
-            _showSecondBottomSheet();
-          },
-        );
-      },
-    );
-  }
-
-  void _showSecondBottomSheet() {
-    final localizations = AppLocalizations.of(this)!;
-
-    showModalBottomSheet(
-      context: this,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      backgroundColor: Colors.white,
-      isScrollControlled: true,
-      isDismissible: false,
-      builder: (BuildContext context) {
-        return _ReviewBottomSheet(
-          imageUrl: 'assets/images/heart.png',
-          title: localizations.reviewDialogText,
-          successOnPressed: () async {
+            // _showSecondBottomSheet();
             requestReview();
           },
         );
       },
     );
   }
+
+  // void _showSecondBottomSheet() {
+  //   final localizations = AppLocalizations.of(this)!;
+
+  //   showModalBottomSheet(
+  //     context: this,
+  //     shape: const RoundedRectangleBorder(
+  //       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+  //     ),
+  //     backgroundColor: Colors.white,
+  //     isScrollControlled: true,
+  //     isDismissible: false,
+  //     builder: (BuildContext context) {
+  //       return _ReviewBottomSheet(
+  //         imageUrl: 'assets/images/heart.png',
+  //         title: localizations.reviewDialogText,
+  //         successOnPressed: () async {
+  //           requestReview();
+  //         },
+  //       );
+  //     },
+  //   );
+  // }
 
   Future<void> requestReview() async {
     final InAppReview inAppReview = InAppReview.instance;
@@ -97,11 +100,14 @@ class _ReviewBottomSheet extends StatelessWidget {
     super.key,
     this.imageUrl,
     required this.title,
+    required this.subtitle,
     this.successOnPressed,
   });
 
   final String? imageUrl;
   final String title;
+  final String subtitle;
+
   final Function()? successOnPressed;
 
   @override
@@ -110,7 +116,8 @@ class _ReviewBottomSheet extends StatelessWidget {
 
     const bottomTextStyle = TextStyle(
       fontSize: 19,
-      color: Colors.black,
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
     );
     const textStyle = TextStyle(
       fontSize: 20,
@@ -119,7 +126,7 @@ class _ReviewBottomSheet extends StatelessWidget {
     );
 
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -133,6 +140,7 @@ class _ReviewBottomSheet extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
           ),
+          const SizedBox(height: 16),
           if (imageUrl != null)
             SizedBox(
               height: 100,
@@ -146,6 +154,14 @@ class _ReviewBottomSheet extends StatelessWidget {
             title,
             textAlign: TextAlign.center,
             style: textStyle,
+          ),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              subtitle,
+              style: TextStyle(color: Colors.black54),
+              textAlign: TextAlign.center,
+            ),
           ),
           const SizedBox(height: 20),
           Row(

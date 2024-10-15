@@ -116,14 +116,38 @@ abstract class AppLocalizations {
   /// No description provided for @buttonYes.
   ///
   /// In en, this message translates to:
-  /// **'Yes'**
+  /// **'Rate now'**
   String get buttonYes;
 
   /// No description provided for @buttonNo.
   ///
   /// In en, this message translates to:
-  /// **'No'**
+  /// **'No, thanks'**
   String get buttonNo;
+
+  /// No description provided for @reviewDialogSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We always appreciate your feedback! If you enjoy our app, please rate it in the app store. Your opinion means a lot to us!'**
+  String get reviewDialogSubtitle;
+
+  /// No description provided for @ourAppsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try our other apps!'**
+  String get ourAppsTitle;
+
+  /// No description provided for @ourNoButton.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get ourNoButton;
+
+  /// No description provided for @ourYesButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, let\'s go!'**
+  String get ourYesButton;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -43,7 +43,7 @@ extension OurAppsX on BuildContext {
       context: this,
       builder: (BuildContext context) {
         return _AlertDialog(
-          imageUrl: 'assets/images/like.png',
+          imageUrl: 'assets/images/discord.png',
           title: 'Хотите ознакомиться с нашими другими приложениями?',
           successOnPressed: () {
             openStringUrl(

@@ -16,8 +16,20 @@ class AppLocalizationsRu extends AppLocalizations {
   String get reviewLeftTitle => 'Отзыв оставлен';
 
   @override
-  String get buttonYes => 'Да';
+  String get buttonYes => 'Оценить';
 
   @override
-  String get buttonNo => 'Нет';
+  String get buttonNo => 'Нет, спасибо';
+
+  @override
+  String get reviewDialogSubtitle => 'Мы всегда рады обратной связи! Если вам нравится наше приложение, оцените его в магазине. Нам это очень важно!';
+
+  @override
+  String get ourAppsTitle => 'Попробуйте другие наши приложения!';
+
+  @override
+  String get ourNoButton => 'Нет';
+
+  @override
+  String get ourYesButton => 'Да, давайте!';
 }
