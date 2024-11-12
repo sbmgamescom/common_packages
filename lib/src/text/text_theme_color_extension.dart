@@ -11,6 +11,16 @@ class MyTextThemeExtensions {
     warningText: Color(0xffFFA722),
     successText: Color(0xff71BD4E),
   );
+  static const dark = MyTextColorThemeExtension(
+    primaryText: Color(0xffE0E6ED),
+    secondaryText: Color(0xffB4C0CC),
+    tertiaryText: Color(0xff8FA2B5),
+    disabledText: Color(0xff5A6978),
+    accentText: Color(0xff4DA0E6),
+    negativeText: Color(0xffFF5A5A),
+    warningText: Color(0xffFFB347),
+    successText: Color(0xff63D36A),
+  );
 }
 
 @immutable
