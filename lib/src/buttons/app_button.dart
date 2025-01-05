@@ -66,7 +66,9 @@ class _AppAsyncButtonState extends State<AppAsyncButton> {
     try {
       await widget.onPressed!();
     } finally {
-      setState(() => isLoading = false);
+      if (mounted) {
+        setState(() => isLoading = false);
+      }
     }
   }
 
