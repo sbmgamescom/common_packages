@@ -83,7 +83,9 @@ class _AppAsyncButtonState extends State<AppAsyncButton> {
         );
       }
     } finally {
-      setState(() => isLoading = false);
+      if (mounted) {
+        setState(() => isLoading = false);
+      }
     }
   }
 
