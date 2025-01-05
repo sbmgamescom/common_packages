@@ -22,6 +22,8 @@ class AppAsyncButton extends StatefulWidget {
     this.borderRadius = 12.0,
     this.child,
     this.textStyle,
+    this.onError,
+    this.errorSnackBarMessage,
   });
 
   /// Асинхронный коллбэк.
@@ -53,6 +55,9 @@ class AppAsyncButton extends StatefulWidget {
   /// Скругление углов.
   final double borderRadius;
 
+  final Function(Object)? onError;
+  final String? errorSnackBarMessage;
+
   @override
   State<AppAsyncButton> createState() => _AppAsyncButtonState();
 }
@@ -65,6 +70,18 @@ class _AppAsyncButtonState extends State<AppAsyncButton> {
     setState(() => isLoading = true);
     try {
       await widget.onPressed!();
+    } catch (error) {
+      if (widget.onError != null) {
+        widget.onError!(error);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              widget.errorSnackBarMessage ?? 'Произошла ошибка.',
+            ),
+          ),
+        );
+      }
     } finally {
       setState(() => isLoading = false);
     }
