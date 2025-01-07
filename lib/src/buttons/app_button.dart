@@ -24,6 +24,7 @@ class AppAsyncButton extends StatefulWidget {
     this.textStyle,
     this.onError,
     this.errorSnackBarMessage,
+    this.backgroundColor,
   });
 
   /// Асинхронный коллбэк.
@@ -57,6 +58,7 @@ class AppAsyncButton extends StatefulWidget {
 
   final Function(Object)? onError;
   final String? errorSnackBarMessage;
+  final Color? backgroundColor;
 
   @override
   State<AppAsyncButton> createState() => _AppAsyncButtonState();
@@ -113,6 +115,7 @@ class _AppAsyncButtonState extends State<AppAsyncButton> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(widget.borderRadius),
             ),
+            backgroundColor: widget.backgroundColor,
           ),
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 200),
