@@ -2,7 +2,7 @@ import 'package:common_packages/src/text/text_theme_color_extension.dart';
 import 'package:flutter/material.dart';
 
 extension TextColorsX on Text {
-  Text _copyWith(BuildContext context, {Color? color}) {
+  Text _copyWith(BuildContext? context, {Color? color}) {
     return Text(
       data!,
       style: (style ?? const TextStyle()).copyWith(color: color),
@@ -88,6 +88,13 @@ extension TextColorsX on Text {
       context,
       color:
           Theme.of(context).extension<MyTextColorThemeExtension>()!.successText,
+    );
+  }
+
+  Text white() {
+    return _copyWith(
+      null,
+      color: Colors.white,
     );
   }
 }
