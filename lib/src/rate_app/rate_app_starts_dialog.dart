@@ -38,6 +38,7 @@ extension RateAppStarsDialogX on BuildContext {
 
     showDialog(
       context: this,
+      barrierDismissible: false,
       builder: (context) => _StarsRatingDialog(
         onRatingSubmitted: (rating) async {
           if (rating >= 4) {
